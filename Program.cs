@@ -6,13 +6,14 @@ namespace Kodanalys
     class Program // Here used changed to capital
     {
         static List<string> users = new List<string>();
-        static int userCount = 0; 
+        static int userCount = 0;
 
         //Dåliga variablenamn ändrade till mer passande namn
         static void Main(string[] args)
         {
-            bool programHalted = true;
-            while (programHalted)
+            bool isRunning = true;
+
+            while (isRunning)
             {
                 Console.WriteLine("Välj ett alternativ:");
                 Console.WriteLine("1. Lägg till användare");
@@ -20,96 +21,37 @@ namespace Kodanalys
                 Console.WriteLine("3. Ta bort användare");
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
-                string UserChoice = Console.ReadLine();
+                Console.Write("Val: ");
+                string userChoice = Console.ReadLine();
 
-                if (UserChoice == "1")
-                {
-                    Console.Write("Ange namn: ");
-                    string name = Console.ReadLine();
-                    if (userCount < 10)
-                    {
-                        if (users.Count < 10)
-                        {
-                            users.Add(name);
-                        }
-                        else
-                        {
-                            users[userCount] = name;
-                        }
-                        userCount++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Listan är full!");
-                    }
-                }
-                else if (UserChoice == "2")
-                {
-                    Console.WriteLine("Användare:");
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        Console.WriteLine(users[i]);
-                    }
-                }
-                else if (UserChoice == "3")
-                {
-                    Console.Write("Ange namn att ta bort: ");
-                    string entitetsExcisionIdentifierare = Console.ReadLine();
-                    int nanoBanana = -1;
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        if (users[i] == entitetsExcisionIdentifierare)
-                        {
-                            nanoBanana = i;
-                            break;
-                        }
-                    }
+                //Here a switch statement is more appropriate than multiple if-else statements
+                // The switch statement is commented out below for reference
 
-                    if (nanoBanana != -1)
-                    {
-                        for (int i = nanoBanana; i < userCount - 1; i++)
-                        {
-                            users[i] = users[i + 1];
-                        }
-                        userCount--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                }
-                else if (UserChoice == "4")
+                /*switch (userChoice)
                 {
-                    Console.Write("Ange namn att söka: ");
-                    string nebulousQuery = Console.ReadLine();
-                    bool f00l = false;
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        if (users[i] == nebulousQuery)
-                        {
-                            f00l = true;
-                            break;
-                        }
-                    }
-                    if (f00l)
-                    {
-                        Console.WriteLine("Användaren finns i listan.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                }
-                else if (UserChoice == "5")
-                {
-                    programHalted = false;
-                }
-                else
-                {
-                    Console.WriteLine("Ogiltigt val.");
-                }
+                    case "1":
+                        AddUser();
+                        break;
+                    case "2":
+                        ShowUsers();
+                        break;
+                    case "3":
+                        RemoveUser();
+                        break;
+                    case "4":
+                        SearchUser();
+                        break;
+                    case "5":
+                        isRunning = false;
+                        break;
+                    default:
+                        Console.WriteLine("Ogiltigt val.");
+                        break;
+                }*/
+
                 Console.WriteLine();
             }
         }
+
     }
 }
