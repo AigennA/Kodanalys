@@ -27,7 +27,7 @@ namespace Kodanalys
                 //Here a switch statement is more appropriate than multiple if-else statements
                 // The switch statement is commented out below for reference
 
-                /*switch (userChoice)
+                switch (userChoice)
                 {
                     case "1":
                         AddUser();
@@ -47,11 +47,47 @@ namespace Kodanalys
                     default:
                         Console.WriteLine("Ogiltigt val.");
                         break;
-                }*/
+                }
 
                 Console.WriteLine();
             }
         }
 
+        //Here are the methods for each functionality
+        static void AddUser()
+        {
+            Console.Write("Ange namn: ");
+            string name = Console.ReadLine();
+            users.Add(name);
+        }
+
+        static void ShowUsers()
+        {
+            Console.WriteLine("Användare:");
+            foreach (var user in users)
+            {
+                Console.WriteLine(user);
+            }
+        }
+
+        static void RemoveUser()
+        {
+            Console.Write("Ange namn att ta bort: ");
+            string name = Console.ReadLine();
+            if (users.Remove(name))
+                Console.WriteLine("Användaren togs bort.");
+            else
+                Console.WriteLine("Användaren hittades inte.");
+        }
+
+        static void SearchUser()
+        {
+            Console.Write("Ange namn att söka: ");
+            string name = Console.ReadLine();
+            if (users.Contains(name))
+                Console.WriteLine("Användaren finns i listan.");
+            else
+                Console.WriteLine("Användaren hittades inte.");
+        }
     }
 }
